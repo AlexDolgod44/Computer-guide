@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Учебное пособие | Сервисные программы для ПК: диагностика, обслуживание, устранение сбоев</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f1f5f9;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            color: #0f172a;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0b2b3b 0%, #1e4a6e 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .badge {
+            display: inline-block;
+            background: #ffb347;
+            color: #1e293b;
+            padding: 0.25rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .nav-toc {
+            background: #f8fafc;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .nav-toc a {
+            text-decoration: none;
+            color: #1e4a6e;
+            font-weight: 500;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+        .nav-toc a:hover {
+            background: #1e4a6e;
+            color: white;
+            border-color: #1e4a6e;
+        }
+
+        .content {
+            padding: 2rem 2rem 3rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 1.2rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            border-left: 6px solid #ffb347;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem 0;
+            color: #1e4a6e;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 1.2rem;
+            padding: 1.2rem 1.3rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .card p {
+            color: #334155;
+            margin: 0.5rem 0;
+        }
+        .tool-tag {
+            display: inline-block;
+            background: #eef2ff;
+            color: #1e4a6e;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .steps-list {
+            background: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-radius: 1.2rem;
+            margin: 1rem 0;
+        }
+        .steps-list li {
+            margin: 0.6rem 0;
+            margin-left: 1.2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #eef2ff;
+            font-weight: 600;
+        }
+        .note {
+            background: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            margin: 1.5rem 0;
+        }
+        .warning {
+            background: #fee2e2;
+            border-left: 5px solid #dc2626;
+        }
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 700px) {
+            .content { padding: 1.5rem; }
+            h2 { font-size: 1.5rem; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+        hr {
+            margin: 2rem 0;
+            border: 0;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        .icon-em {
+            font-size: 1.5rem;
+        }
+
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 52px;
+            height: 52px;
+            background: #1e4a6e;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            transition: all 0.25s ease;
+        }
+
+        .scroll-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top-btn:hover {
+            background: #ffb347;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .scroll-top-btn:active {
+            transform: translateY(2px);
+        }
+
+        @media (max-width: 700px) {
+            .scroll-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="hero">
+        <h1>🛠️ Использование сервисных программ<br>для обслуживания ПК и устранения неполадок</h1>
+        <p>Учебное пособие: диагностика, профилактика, восстановление системы</p>
+        <div class="badge">Практическое руководство для IT-специалистов и продвинутых пользователей</div>
+    </div>
+
+    <div class="nav-toc">
+        <a data-target="intro">📖 Введение</a>
+        <a data-target="categories">📂 Классификация</a>
+        <a data-target="tools">🔧 Популярные утилиты</a>
+        <a data-target="scenarios">⚠️ Типовые сбои</a>
+        <a data-target="algo">📋 Алгоритмы обслуживания</a>
+        <a data-target="tips">💡 Советы</a>
+    </div>
+
+    <div class="content">
+        <section id="intro">
+            <h2>📖 Введение: Зачем нужны сервисные программы?</h2>
+            <p>Компьютерные системы со временем накапливают ошибки, мусорные файлы, фрагментацию данных, конфликты драйверов и реестра. Сервисные утилиты (также называют <strong>системными утилитами, диагностическими средствами, софтом для обслуживания</strong>) предназначены для мониторинга, профилактики, тестирования оборудования и восстановления работоспособности ОС. Грамотное использование таких программ позволяет продлить срок службы ПК, избежать потери данных и значительно сократить время простоя при сбоях.</p>
+            <div class="note">
+                ✔️ <strong>Ключевые задачи:</strong> диагностика «железа» (HDD/SSD, RAM, GPU), очистка диска, дефрагментация, управление автозагрузкой, резервное копирование, восстановление после сбоев и мониторинг температуры.
+            </div>
+        </section>
+
+        <section id="categories">
+            <h2>📂 Классификация сервисных программ</h2>
+<p>Все утилиты можно разделить на несколько основных групп по функциональному назначению:</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>🔍 Диагностические</h4>
+                    <p>Проверка состояния компонентов: тесты оперативной памяти (MemTest86), жёстких дисков (CrystalDiskInfo, Victoria), стресс-тесты CPU/GPU (Prime95, FurMark).</p>
+                </div>
+                <div class="card">
+                    <h4>🧹 Очистка и оптимизация</h4>
+                    <p>Удаление временных файлов, очистка реестра, управление точками восстановления. Примеры: CCleaner, BleachBit, встроенный «Очистка диска» Windows.</p>
+                </div>
+                <div class="card">
+                    <h4>💾 Работа с дисками</h4>
+                    <p>Дефрагментация (Defraggler), разметка и клонирование (GParted, AOMEI Partition Assistant), проверка S.M.A.R.T., восстановление удалённых файлов (Recuva, TestDisk).</p>
+                </div>
+                <div class="card">
+                    <h4>🔄 Резервное копирование и восстановление</h4>
+                    <p>Acronis True Image, Macrium Reflect, Veeam Agent. Создание образов системы, инкрементные бэкапы, загрузочные диски для восстановления.</p>
+                </div>
+                <div class="card">
+                    <h4>📊 Мониторинг и диагностика в реальном времени</h4>
+                    <p>HWMonitor, Open Hardware Monitor, AIDA64 — контроль температур, напряжений, оборотов вентиляторов, предупреждение о перегреве.</p>
+                </div>
+                <div class="card">
+                    <h4>🛡️ Антивирусные и анти-шпионские</h4>
+                    <p>Удаление вредоносного ПО, блокировка рекламных модулей, лечение системы: Kaspersky Virus Removal Tool, Malwarebytes, AdwCleaner.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools">
+            <h2>🔧 Обзор ключевых сервисных программ</h2>
+            <p>Ниже представлены наиболее эффективные инструменты для обслуживания ПК и устранения сбоев, как встроенные в ОС Windows, так и сторонние.</p>
+            <table>
+                <thead>
+                    <tr><th>Название</th><th>Тип</th><th>Основные возможности</th><th>Для каких сбоев применяется</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>CrystalDiskInfo</td><td>Диагностика дисков</td><td>Отображение S.M.A.R.T., температура, предупреждение о неисправности HDD/SSD</td><td>Внезапные зависания, медленная работа, ошибки чтения</td></tr>
+                    <tr><td>MemTest86</td><td>Тест оперативной памяти</td><td>Глубокое тестирование RAM на ошибки (загрузка с USB)</td><td>BSOD, случайные перезагрузки, артефакты</td></tr>
+                    <tr><td>Victoria (HDD/SSD)</td><td>Сканирование поверхности</td><td>Оценка состояния бэд-блоков, ремап, проверка скорости</td><td>Замедление доступа к файлам, щелчки диска</td></tr>
+                    <tr><td>HWMonitor</td><td>Мониторинг температур</td><td>Контроль CPU, GPU, чипсета, напряжений</td><td>Перегрев, троттлинг, внезапное выключение</td></tr>
+                    <tr><td>CCleaner / BleachBit</td><td>Очистка системы</td><td>Удаление кэша, логов, корректировка автозагрузки</td><td>Нехватка места, медленный запуск ОС</td></tr>
+                    <tr><td>Acronis True Image</td><td>Бэкап и восстановление</td><td>Образ диска, инкрементное копирование, загрузочный носитель</td><td>Сбой загрузки, повреждение системных файлов, атака ransomware</td></tr>
+                    <tr><td>Malwarebytes</td><td>Удаление вредоносного ПО</td><td>Сканирование и удаление троянов, руткитов, adware</td><td>Перенаправление браузера, всплывающие окна, высокая нагрузка CPU</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="scenarios">
+            <h2>⚠️ Типовые сбои компьютерных систем и методы их устранения</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>🔹 «Синий экран смерти» (BSOD)</h4>
+                    <p><strong>Причины:</strong> ошибки драйверов, проблемы с памятью, повреждённые системные файлы. <br>
+                    <strong>Сервисные программы:</strong> WhoCrashed (анализ дампов), MemTest86 (проверка ОЗУ), DISM и SFC (встроенные утилиты Windows).</p>
+                </div>
+                <div class="card">
+                    <h4>🔹 Компьютер тормозит / долгая загрузка</h4>
+                    <p><strong>Диагностика:</strong> MSConfig, Autoruns (от Sysinternals) — отключение лишнего софта в автозагрузке. Дефрагментация (Defraggler для HDD), проверка SSD на TRIM (команда optimize-volume). Очистка диска + удаление мусора.</p>
+                </div>
+                <div class="card">
+                    <h4>🔹 Перегрев и шум кулеров</h4>
+                    <p><strong>Мониторинг:</strong> HWMonitor, SpeedFan. Помогают тесты: Prime95 + FurMark для проверки стабильности под нагрузкой. Чистка физическая + смена термопасты + настройка вентиляции.</p>
+                </div>
+                <div class="card">
+                    <h4>🔹 Пропажа данных / невозможность загрузить ОС</h4>
+                    <p><strong>Решение:</strong> Загрузочные флешки с LiveCD (Hiren’s Boot CD, или утилиты — TestDisk для восстановления разделов, Recuva — восстановление удалённых файлов). Бэкап-программы (Acronis) позволяют откатить систему к последнему рабочему состоянию.</p>
+                </div>
+            </div>
+            <div class="note">
+                ⚡ Важно: перед использованием серьёзных утилит (дефрагментация, редактирование реестра, низкоуровневая диагностика) обязательно создайте резервную копию важных данных!
+            </div>
+        </section>
+
+        <section id="algo">
+            <h2>📋 Алгоритмы профилактического обслуживания ПК</h2>
+            <h3>🧰 Еженедельное обслуживание (базовое)</h3>
+            <div class="steps-list">
+                <ul>
+                    <li>1. Запуск «Очистки диска» (cleanmgr) — удаление временных файлов и корзины.</li>
+                    <li>2. Проверка автозагрузки через Диспетчер задач → отключение ненужных программ.</li>
+                    <li>3. Быстрый антивирусный скан (например, Microsoft Defender + Malwarebytes Free).</li>
+                    <li>4. Мониторинг температуры компонентов (HWMonitor).</li>
+                </ul>
+            </div>
+            <h3>🔍 Ежемесячная расширенная диагностика</h3>
+            <div class="steps-list">
+                <ul>
+                    <li>• Проверка S.M.A.R.T. дисков (CrystalDiskInfo) и выполнение CHKDSK (команда <code>chkdsk C: /f</code>).</li>
+                    <li>• Тестирование оперативной памяти (MemTest86) — хотя бы 1 проход.</li>
+                    <li>• Дефрагментация HDD (для SSD — только TRIM и оптимизация через Defrag /O).</li>
+                    <li>• Обновление драйверов (через официальные утилиты производителя или Snappy Driver Installer).</li>
+                    <li>• Создание контрольной точки восстановления системы и образа системы (раз в квартал).</li>
+                </ul>
+            </div>
+            <h3>⚡ При появлении нестабильной работы (аварийное обслуживание)</h3>
+            <div class="steps-list">
+                <ul>
+                    <li>1️⃣ Загрузка в безопасном режиме — запуск сканирования SFC /SCANNOW и DISM /Online /Cleanup-Image /RestoreHealth.</li>
+                    <li>2️⃣ Анализ журналов событий Windows (Event Viewer) и дампов памяти (BlueScreenView).</li>
+                    <li>3️⃣ Загрузка с Live-USB с набором портативных утилит: проверка диска, восстановление загрузчика (bootrec).</li>
+                    <li>4️⃣ Использование утилит ремонта реестра (только при уверенности — штатный Regedit или Tweaking.com Windows Repair).</li>
+                </ul>
+            </div>
+            <div class="warning note">
+                ⚠️ Предупреждение: некоторые «оптимизаторы» могут удалить важные ключи реестра. Всегда делайте резервную копию реестра или точку восстановления перед вмешательством.
+            </div>
+        </section>
+
+        <section id="tips">
+            <h2>💡 Лучшие практики: как не навредить системе</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>✅ Регулярность</h4>
+                    <p>Автоматизируйте задачи: планировщик Windows для очистки диска, настройка SMART-оповещений, ежемесячные напоминания для проверки температур.</p>
+                </div>
+                <div class="card">
+                    <h4>✅ Комбинирование средств</h4>
+                    <p>Не полагайтесь на одну программу. Сочетайте встроенные средства (DISM, SFC, проверка диска) и специализированные утилиты (CrystalDiskInfo, Victoria) для полной картины.</p>
+                </div>
+                <div class="card">
+                    <h4>✅ Документирование</h4>
+                    <p>Вести журнал неисправностей и действий: какие сервисные программы применялись, результаты тестов. Это помогает выявить повторяющиеся сбои.</p>
+                </div>
+                <div class="card">
+                    <h4>✅ Загрузочные носители</h4>
+                    <p>Создайте флешку с мультизагрузочным набором (Hiren’s BootCD PE, Medicat USB). Это спасёт при отказе Windows.</p>
+                </div>
+            </div>
+            <hr>
+            <h3>🖥️ Встроенные сервисные утилиты Windows</h3>
+            <p>Многие задачи решаются без стороннего ПО:</p>
+            <ul style="margin-left: 1.8rem; margin-bottom: 1rem;">
+                <li><strong>msinfo32</strong> — информация о системе</li>
+                <li><strong>perfmon /rel</strong> — отчёт о стабильности системы</li>
+                <li><strong>dxdiag</strong> — диагностика DirectX и драйверов</li>
+                <li><strong>ресурсный монитор</strong> и <strong>диспетчер задач</strong> — для поиска утечек памяти и высокой загрузки ЦП</li>
+            </ul>
+            <div class="note">
+                📌 Пример комплексного подхода: Если ПК стал нестабильно работать, выполните последовательно:
+                <ol style="margin-top: 0.5rem;">
+                    <li>Проверка диска на ошибки (CHKDSK).</li>
+                    <li>Проверка системных файлов (SFC).</li>
+                    <li>Тест оперативной памяти (Windows Memory Diagnostic).</li>
+                    <li>Анализ температуры под нагрузкой.</li>
+                    <li>Проверка автозагрузки на вирусы и лишние процессы.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <h2>📌 Заключение</h2>
+            <p>Грамотное использование сервисных программ для обслуживания компьютерных систем — основа стабильной и производительной работы ПК. Регулярная диагностика дисков, мониторинг температур, очистка системы и своевременное создание резервных копий позволяют не только устранять сбои, но и предотвращать их. Освоение таких инструментов, как CrystalDiskInfo, MemTest86, Acronis True Image, а также встроенных средств Windows, даёт возможность быстро реагировать на любые неполадки и минимизировать риск потери данных.</p>
+            <p><strong>Помните:</strong> лучший ремонт — это профилактика. Пусть ваш компьютер всегда работает как часы! 🚀</p>
+        </section>
+    </div>
+    <footer>
+        © 2025 Учебное пособие «Сервисные программы для обслуживания компьютерных систем» | Материал предназначен для студентов IT-специальностей и системных администраторов.
+    </footer>
+</div>
+
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">↑</button>
+
+<script>
+    (function() {
+        const scrollBtn = document.getElementById('scrollTopBtn');
+
+        function toggleScrollButton() {
+            if (window.scrollY > 400) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function smoothScrollToElement(elementId) {
+            const targetElement = document.getElementById(elementId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        const navLinks = document.querySelectorAll('.nav-toc a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    smoothScrollToElement(targetId);
+                }
+            });
+        });
+
+        window.addEventListener('scroll', toggleScrollButton);
+        scrollBtn.addEventListener('click', scrollToTop);
+        
+        toggleScrollButton();
+    })();
+</script>
+
+</body>
+</html>
